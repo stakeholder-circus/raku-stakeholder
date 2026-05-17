@@ -1,0 +1,13 @@
+name: Scaffold Docker Smoke
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  scaffold:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Scaffold-only status
+        run: |
+          echo "scaffold-only Docker smoke placeholder; no deterministic runtime validation is claimed"
