@@ -1,14 +1,14 @@
 # Gaps
 
-This repository is scaffold-only for the Raku HorizonLanguage target. It contains baseline coordination files only. No deterministic runtime validation is claimed.
+## Closed in this tranche
 
-## Horizon target
+- Scaffold-only status replaced with a native Raku deterministic CLI.
+- Dedicated `classic-six + modern-core` families implemented.
+- Later families use explicit grouped fallback renderers.
+- Experimental provider flags fail fast.
 
-- Language id: raku
-- Display name: Raku
-- Horizon status: planned
-- Target class: parity-target
-- Repository: raku-stakeholder
-## Scaffold scope
+## Remaining gaps
 
-This scaffold-only repo intentionally has full runtime gaps. Source audit, implementation, fixtures, parity checks, package metadata, and release automation remain deferred.
+- Docker validation is deferred for M1 resource safety.
+- Full live-provider/runtime support is deferred to the provider rollout wave.
+- Remote publication and required-check binding are not started.

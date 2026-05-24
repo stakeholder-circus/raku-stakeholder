@@ -1,14 +1,23 @@
-# Raku stakeholder scaffold
+> [!WARNING]
+> This repository is AI-assisted and manually reviewed. It is local-only in the resource-safe small deterministic tranche.
 
-This repository is scaffold-only for the Raku HorizonLanguage target. It contains baseline coordination files only. No deterministic runtime validation is claimed.
+# raku-stakeholder
 
-## Horizon target
+Raku implementation of the stakeholder deterministic first tranche using Rakudo/MoarVM.
 
-- Language id: raku
-- Display name: Raku
-- Horizon status: planned
-- Target class: parity-target
-- Repository: raku-stakeholder
-## Scaffold scope
+## Current tranche
 
-This README documents a scaffold-only target repository. It exists to reserve the repo shape, coordination files, and future parity workflow without claiming working runtime behavior.
+- Full dedicated `classic-six + modern-core` generator families.
+- Grouped fallback for later generator families.
+- Deterministic normalized JSON with same-seed stability.
+- `--list-values`, `--focus-family`, `--output-format`, `--seed`, and explicit `--experimental-provider` fail-fast.
+- Full live-provider/runtime support remains deferred to the later provider wave.
+
+## Commands
+
+- `python3 scripts/validate_scaffold.py`
+- `make compiler-proof`
+- `make test`
+- `raku bin/stakeholder.raku --list-values`
+
+Docker is intentionally not used in this M1-safe pass; native Rakudo is the validation lane.

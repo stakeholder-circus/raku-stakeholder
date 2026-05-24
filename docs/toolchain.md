@@ -1,14 +1,12 @@
 # Toolchain
 
-This repository is scaffold-only for the Raku HorizonLanguage target. It contains baseline coordination files only. No deterministic runtime validation is claimed.
+Raku native validation uses Rakudo on MoarVM on arm64 macOS.
 
-## Horizon target
+## Proven commands
 
-- Language id: raku
-- Display name: Raku
-- Horizon status: planned
-- Target class: parity-target
-- Repository: raku-stakeholder
-## Scaffold scope
+- `raku --version`
+- `raku -c bin/stakeholder.raku`
+- `make compiler-proof`
+- `make test`
 
-Toolchain status: scaffold-only. No compiler, interpreter, formatter, package manager, test runner, or deterministic runtime validation has been selected or proven.
+Toolchain source: Homebrew bottled `rakudo` 2026.05 plus `moarvm`, `nqp`, and `mimalloc`. Docker, Nix, and Raku package managers are not required for the current deterministic first tranche.
