@@ -6,9 +6,10 @@
 - Dedicated `classic-six + modern-core` families implemented.
 - Later families use explicit grouped fallback renderers.
 - Experimental provider flags fail fast.
+- Native and Docker validation run remotely in GitHub Actions.
+- Security, dependency, and workflow-analysis gates are present.
 
 ## Remaining gaps
 
-- Docker validation is deferred for M1 resource safety.
 - Full live-provider/runtime support is deferred to the provider rollout wave.
-- Remote publication and required-check binding are not started.
+- Cross-language behavioral convergence beyond the deterministic tranche remains program work.

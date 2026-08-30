@@ -1,13 +1,18 @@
-name: Scaffold CI
+name: contract
 
 on:
   push:
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
-  scaffold:
-    runs-on: ubuntu-latest
+  contract:
+    runs-on: ubuntu-24.04
     steps:
-      - name: Scaffold-only status
-        run: |
-          echo "scaffold-only CI placeholder; no deterministic runtime validation is claimed"
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Validate deterministic tranche baseline
+        run: python3 scripts/validate_scaffold.py
