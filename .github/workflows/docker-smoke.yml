@@ -1,13 +1,32 @@
-name: Scaffold Docker Smoke
+name: docker-smoke
 
 on:
   push:
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
-  scaffold:
-    runs-on: ubuntu-latest
+  docker-smoke:
+    runs-on: ubuntu-24.04
     steps:
-      - name: Scaffold-only status
+      - uses: actions/checkout@v4
+      - name: Build image
+        run: docker build -t raku-stakeholder .
+      - name: Registry smoke
+        run: docker run --rm raku-stakeholder --list-values | grep -F '"generatorFamilies"'
+      - name: Dedicated family smoke
+        run: docker run --rm raku-stakeholder --output-format json --focus-family code_analyzer --seed 123 | grep -F '"rendererKey":"classic-six.code_analyzer"'
+      - name: Same-seed stability
         run: |
-          echo "scaffold-only Docker smoke placeholder; no deterministic runtime validation is claimed"
+          docker run --rm raku-stakeholder --output-format json --focus-family platform-engineering --seed 8675309 > /tmp/a.json
+          docker run --rm raku-stakeholder --output-format json --focus-family platform-engineering --seed 8675309 > /tmp/b.json
+          diff -u /tmp/a.json /tmp/b.json
+      - name: Experimental provider fail-fast
+        run: |
+          if docker run --rm raku-stakeholder --experimental-provider local-demo > /tmp/provider.out 2> /tmp/provider.err; then
+            echo "experimental provider unexpectedly succeeded" >&2
+            exit 1
+          fi
+          grep -F 'experimental provider' /tmp/provider.err

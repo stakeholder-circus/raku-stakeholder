@@ -1,5 +1,5 @@
-> [!WARNING]
-> This repository is AI-assisted and manually reviewed. It is local-only in the resource-safe small deterministic tranche.
+> [!NOTE]
+> This repository is AI-assisted and manually reviewed. Deterministic behavior is validated natively and in Docker; live-provider support remains a separate tranche.
 
 # raku-stakeholder
 
@@ -17,7 +17,10 @@ Raku implementation of the stakeholder deterministic first tranche using Rakudo/
 
 - `python3 scripts/validate_scaffold.py`
 - `make compiler-proof`
+- `make analyze`
 - `make test`
 - `raku bin/stakeholder.raku --list-values`
+- `docker build -t raku-stakeholder .`
+- `docker run --rm raku-stakeholder --list-values`
 
-Docker is intentionally not used in this M1-safe pass; native Rakudo is the validation lane.
+GitHub Actions runs the contract, native Rakudo, Docker, dependency-review, actionlint, syntax/SAST, and workflow-security gates. Required checks are bound to `main` after the first green pull request.

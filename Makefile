@@ -1,12 +1,15 @@
 RAKU ?= raku
 BIN := bin/stakeholder.raku
 
-.PHONY: all compiler-proof syntax-check test clean
+.PHONY: all compiler-proof analyze syntax-check test clean
 
 all: syntax-check
 
 compiler-proof:
 	$(RAKU) --version
+
+analyze:
+	$(RAKU) -c $(BIN)
 
 syntax-check:
 	$(RAKU) -c $(BIN)

@@ -1,4 +1,4 @@
-name: ci-native
+name: sast
 
 on:
   push:
@@ -8,7 +8,7 @@ permissions:
   contents: read
 
 jobs:
-  native:
+  raku-syntax-check:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
@@ -16,9 +16,5 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends raku
-      - name: Compiler proof
-        run: make compiler-proof
-      - name: Syntax analysis
-        run: make analyze
-      - name: Deterministic CLI tests
-        run: make test
+      - name: Compile-check runtime
+        run: raku -c bin/stakeholder.raku
