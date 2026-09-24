@@ -1,4 +1,4 @@
-FROM ubuntu:24.04 AS build
+FROM ubuntu:25.10 AS build
 
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends raku \
@@ -10,7 +10,7 @@ COPY tests/ tests/
 RUN raku -c bin/stakeholder.raku \
     && RAKU=raku BIN=bin/stakeholder.raku tests/test_cli.sh
 
-FROM ubuntu:24.04
+FROM ubuntu:25.10
 
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends ca-certificates raku \
